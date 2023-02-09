@@ -45,3 +45,13 @@ Once I am in another computer. Now shipped with Intel i7-1165G7. Times took for 
 * Once more 500 cubes: 21983 ms
 * From zero to 10.000 at once: 2564845 ms, or 2564 seconds, or almost 43 minutes.
 * From zero to 1.500: 36818 ms
+
+### Beign more inteligent on generating the "sphere of cubes"
+
+There's another script `randomsphere_onepass.py` just created. Here I try to make things more efficient. Instead of creating a box in it's default position and them moves to the calcalated vector position, why not create the cube already in the correct calculated position? So a *pass* of moving object may not be necessary and some processing time may be saved. The results in computer from same i7-1165G7:
+
+* First 500 cubes: 2618 ms
+* Next 500: 10246 ms
+* Final 500 more cubes: 20309 ms
+
+Interesting! Sort of 17% of time gained on the first pass. But the gain becomes less and less marginal as we got further on adding cubes in a scene that already some. Somewhat 8% of gain in the third.
