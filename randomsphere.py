@@ -8,9 +8,12 @@ from criarcubo import createCube
 from random import random
 import math
 from datetime import datetime
+import time
+
+def getMilliseconds():
+    return round(time.time() * 1000)
 
 def posite(name):
-    
     x = random() * 2 - 1
     y = random() * 2 - 1
     z = random() * 2 - 1
@@ -45,11 +48,15 @@ def posite(name):
     
     bpy.context.selected_objects[0].name = name
 
+starttime = getMilliseconds()
 iteration = 1
-for i in range(1000):
+for i in range(500):
     createCube(.02)
     now = datetime.now()
     timestamp = datetime.timestamp(now)
     name = "cube-" + str(timestamp) + "-" + str(iteration)
     posite(name)
     iteration += 1
+endtime = getMilliseconds()
+
+print("Took " + str(endtime - starttime) + " ms")
