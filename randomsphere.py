@@ -2,13 +2,19 @@ import sys
 import bpy
 from importlib import reload
 sys.path.append("C:/Users/danil/pCloud/3d")
-import criarcubo
-reload(criarcubo)
-from criarcubo import createCube
 from random import random
 import math
 from datetime import datetime
 import time
+
+def createCube(size=2):
+    bpy.ops.mesh.primitive_cube_add(
+        size=size, 
+        enter_editmode=False, 
+        align='WORLD', 
+        location=(0, 0, 0), 
+        scale=(1, 1, 1)
+    )
 
 def getMilliseconds():
     return round(time.time() * 1000)

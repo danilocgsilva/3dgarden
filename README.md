@@ -20,7 +20,7 @@ I know that a got the success for defining a random direction vector when object
 
 ## Performance quirks (in Blender)
 
-The `randomsphere.py` script also calculates the time took to generate all 500 cubes. It took very different times each iteration. The first time I run the script, it usually tooks around 2700 milliseconds. The second time, tooks around 9020. The third time, for exact same 500 cubes, tooks 17560. I can delete all cubes and run script again. Them, the time took is *reseted*, again taking around 2700 milliseconds. This strongly suggests that for each new cube creation, the performance is heavilly affected by the objects that already exists in the scene. SO here, i think that is a good place to Blender programmers works to gain some efficiency. For me makes not sense. But I also would like to know what happens behind the scenes to justify why the new object creation heavily is impacted by the objects that currently exists.
+The `randomsphere.py` script also calculates the time took to generate all 500 cubes. It took very different times each iteration. The first time I run the script, it usually tooks around 2700 milliseconds. The second time, tooks around 9020. The third time, for exact same 500 cubes, tooks 17560. I can delete all cubes and run script again. Them, the time took is *reseted*, again taking around 2700 milliseconds. This strongly suggests that for each new cube creation, the performance is heavilly affected by the objects that already exists in the scene. So here, I think that is a good place to Blender programmers works to gain some efficiency. For me makes no sense the currently existing objects affets new ones creation. But I also would like to know what happens behind the scenes to justify why this happens.
 
 I also runned a test to create at once 1500 cubes. Then it tooks 33149 milliseconds! Cleared the scene, runned once more, takes 32935 milliseconds. It is little more than the sum of the time took for each 500 spehre generated at once! Quite strange! But also interesting to know what happens.
 
@@ -28,11 +28,20 @@ Another thing to note is that, althought in the time when the Blender are creati
 
 ### The way of 10.000 cubes
 
-All the tests untill now is beign done with a quite powerfull processor (to the time of this writting). I am using a computer shipped with an Intel i7 12700H. Also have a NVidia RTX 3060 laptop GPU for 3d handling.
+All the tests untill now is beign done with a quite powerfull processor (to the time of this writting). I am using a computer shipped with an Intel i7-12700H. Also have a NVidia RTX 3060 laptop GPU for 3d handling.
 
 In much older hardware (in 3ds max), few millons of polygons wasn't much thing to handle. I remember that subdividing s geometry to 2 millions polygons still could be handled fluidly. The things starts to be unconfortable with more than 5 millions of polygons (sorry, I do not remember what GPU was I was using in that time).
 
 10.000 *stuffs* inside a modern computer like I am using seems not to be much thing. In fact, manipullating a scene with 10.000 tiny cubes have no quirks. Once the chanllenge was to handle tons of polygons at once in a scene. Now we have other issues.
 
-For example, using the exact same script to generate spheres, to generate 10.000 cubes, it tooks 2273134 ms! Or, almost 38 minutes. But this
+For example, using the exact same script to generate spheres, to generate 10.000 cubes, it tooks 2273134 ms! Or, almost 38 minutes. But after it is created, I can manipulate objects and the 3d space very smoothly. But 38 minutes to generate 10.000 tiny cubes is not what I expects for a powerfull laptop.
 
+### Landing in other garden...
+
+Once I am in another computer. Now shipped with Intel i7-1165G7. Times took for the same task:
+
+* First 500 cubes: 3132 ms
+* Next 500 cubes: 11076 ms
+* Once more 500 cubes: 21983 ms
+* From zero to 10.000 at once: 2564845 ms, or 2564 seconds, or almost 43 minutes.
+* From zero to 1.500: 36818 ms
