@@ -55,3 +55,11 @@ There's another script `randomsphere_onepass.py` just created. Here I try to mak
 * Final 500 more cubes: 20309 ms
 
 Interesting! Sort of 17% of time gained on the first pass. But the gain becomes less and less marginal as we got further on adding cubes in a scene that already some. Somewhat 8% of gain in the third.
+
+## Chasing the idle processors
+
+If the problem of some thousands cubes generation is due to the fact that Blender does not knows how to use several processors core at the same time, what if we raise several Blenders instances and distribute the work throught the opened instances?
+
+Generating 10.000 cubes in the i7-12700H takes 38 minutes, as said above in the [The way of 10.000 cubes](#The-way-of-10.000-cubes) section above. And let the processor raised through 18% of usage all this time. And also, already attested that the time took for each new cube grows exponentially, as the amoun tof cubes already in the scene. What if 5 Blenders instances opened at same time, took the duty of creating 2.000 cubes each and them, join the generated cubes altogether? This is the test that I did.
+
+The process is quite cumbersome. Open five Blender, position each in a region in the window, so you do not confuse one with another instance, got to the scripting tab, paste the script, run the script, do everything again for the remaining instances. Them, wait all Blenders finishes its cubes generation, save the generated file with a distinctive name, open a final Blender instance, and append file by file, selectiong everything but the default camera and light that I forget to remove from each past used instance. Uff! But despite all this daunting work, all the process took just 7 minutes, little less than a fifth of the time required if I have created all ten thousands cubes in a single Blender intance was required to create all 10.000 cubes at once. Very interesting beign the sema amount of instances opened at once to do the work, remembering that I am considering 7 minutes not only the time took to generate cubes, but also the time to set up each Blender instance and them joining all together. And also worth to say, the processor got at it's peak little more than 60% of usage, showing that the relationshipt between processor usage and time required was also more efficient.
