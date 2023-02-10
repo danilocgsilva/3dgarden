@@ -63,3 +63,44 @@ If the problem of some thousands cubes generation is due to the fact that Blende
 Generating 10.000 cubes in the i7-12700H takes 38 minutes, as said above in the [The way of 10.000 cubes](#The-way-of-10.000-cubes) section above. And let the processor raised through 18% of usage all this time. And also, already attested that the time took for each new cube grows exponentially, as the amoun tof cubes already in the scene. What if 5 Blenders instances opened at same time, took the duty of creating 2.000 cubes each and them, join the generated cubes altogether? This is the test that I did.
 
 The process is quite cumbersome. Open five Blender, position each in a region in the window, so you do not confuse one with another instance, got to the scripting tab, paste the script, run the script, do everything again for the remaining instances. Them, wait all Blenders finishes its cubes generation, save the generated file with a distinctive name, open a final Blender instance, and append file by file, selectiong everything but the default camera and light that I forget to remove from each past used instance. Uff! But despite all this daunting work, all the process took just 7 minutes, little less than a fifth of the time required if I have created all ten thousands cubes in a single Blender intance was required to create all 10.000 cubes at once. Very interesting beign the sema amount of instances opened at once to do the work, remembering that I am considering 7 minutes not only the time took to generate cubes, but also the time to set up each Blender instance and them joining all together. And also worth to say, the processor got at it's peak little more than 60% of usage, showing that the relationshipt between processor usage and time required was also more efficient.
+
+## Linux performance
+
+The computer with the i7-12700H is *dualbooted* both with Windows and Ubuntu. Some past experience, showed that using Windows is like *drive with a handbreak pulled*. Some tasks done in Windows took about 2 to 3 times more than the same one done in Linux, in the same computer, doing the same task, with the same software version! I have tested this also for Blender, but the difference is not so drammatic, althought worth to considers.
+
+Running the test of 500 cubes creation, a few times, both in Windows and Ubuntu brings the following results:
+
+First time in Ubuntu:
+
+* 500 first boxes: 1903 milliseconds
+* 500 following: 6177 milliseconds
+* last 500: 11995 milliseconds
+
+Second timein Ubuntu
+
+* first 500: 1962 milliseconds
+* following 500: 6390 milliseconds
+* last 500: 12220 milliseconds
+
+In Windows, runned three times:
+
+First time in Windows:
+
+* first 500: 2213 milliseconds
+* following 500 ones: 7927 milliseconds
+* last 500 ones: 16112 milliseconds
+
+Second time in Windows
+
+* first 500: 2686 milliseconds
+* following 500 ones: 9736 milliseconds
+* last 500: 17625 milliseconds
+
+Thitd test in Windows
+
+* first 500: 2524
+* following 500: 8279 milliseconds
+* the final 500 ones: 16118 milliseconds
+
+Linux shows some better stabillity and speed over tests. The difference are about 20% better for the first 500 cubes, but things becomes more dramatic as the amount of objects grows, reaching almost 50% of performance improvement when that are much objects in the scene.
+
