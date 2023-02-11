@@ -104,6 +104,7 @@ The .obj file format is an old known feature, but recently I discovered that its
 
 Here comes the the `obj_cube_generator/CubeCodeGenerator.py` script. Its intent is to create a content of a file chunk representing a cube of an .obj file.
 
-That are some stuffs in `obj_cube_generator/examples` demonstrating the `CubeCodeGenerator.py` usage, looking for the 10.000 cubes generation. You can check how those files works in the [folder README.md](obj_cube_generator/examples/README.md)
+That are some stuffs in `obj_cube_generator/examples` demonstrating the `CubeCodeGenerator.py` usage, looking for the 10.000 cubes generation. You can check how those files works in the [folder README.md](obj_cube_generator/examples/README.md). The files used together can generate the 10.000 cubes much more faster tham done in Blender.
 
+Executing the `obj_cube_generator/examples/generateDataSpherePosition.py` and redirects its content to a file tooks an eye blink of time. Using the generated file and redirecting its content to `obj_cube_generator/examples/inputcubespos.py` generate a .obj file containing cubes in all positions recorded in the file, which also tooks an eye blink. Them opening it in Blender tooks around 2 seconds in i7-12700H. So, some sort operations done in less than 30 seconds can creates 10.000 cubes in the Blender 3d space. Much better than the first 38 minutes if all done inside Blender.
 

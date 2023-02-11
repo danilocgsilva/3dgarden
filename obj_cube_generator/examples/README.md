@@ -6,14 +6,13 @@ Follows the explanation for files in this section.
 
 Uses the `CubesCodeGenerator` class and creates an .obj file with just one cube just for the demonstration sake.
 
-
 ### **`generateDataSpherePosition.py`**
 
-Another piece of code decoupled from Blender. This is the *vector position calculation* almost isolated from everything else. It is just the vector generation for a single object, that is, a position from something distanct in one unit from the center, pointed to a completely random direction, done 10.000 times. In addition for all three axis values, an additional value of 0.01. This is throwed to the standart output, so easily can be used to be consumed by other piece of software.
+This is a *vector position calculation* almost isolated from everything else. It is just the vector generation for a single object, that is, a position from something distanct in one unit from the center, pointed to a completely random direction, done 10.000 times. Each calculation is a sequence of three values representing the x, y and z axis in the 3d space. In addition for all three axis values, an additional value of 0.01, pretending be the size that the user desired for the object. This is throwed to the standart output, so easily can be used to be consumed by other piece of software.
 
 ### **`inputcubespos.py`**
 
-This is cool one. This script is designed to read the data from a text file from standard input, iterates for each file line, uses the `CubeCodeGenerator.py` to create an .obj chunk of cube representing a cube based on each line file, and them creates an .obj file containing all cubes.
+This script is designed to read the data from a text file from standard input, iterates for each file line, uses the `CubeCodeGenerator.py` to create an .obj chunk of cube representing a cube based on each line file, and them creates an .obj file containing all cubes.
 
 ### **`10000cubes.data`**
 
