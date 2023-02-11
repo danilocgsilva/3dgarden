@@ -6,14 +6,15 @@
 * [Beign more inteligent on generating the "sphere of cubes"](#Beign-more-inteligent-on-generating-the-"sphere-of-cubes")
 * [Chasing the idle processors](#Chasing-the-idle-processors)
 * [Linux performance](#Linux-performance)
+* [Obj Generator](#Obj-Generator)
 
 I know that a got the success for defining a random direction vector when objects plotted randomly forms a sort of sphere. This is what I got in the `randomsphere.py`. There you can check the range, where prints 500 tiny cubes forming a sphere. The deal here is all cubes have exact same distance from the center, so we can take all three axis values over the space and considers its as a 3d vector representation.
 
 ## Performance quirks (in Blender)
 
-The `randomsphere.py` script also calculates the time took to generate all 500 cubes. It took very different times each iteration. The first time I run the script, it usually tooks around 2700 milliseconds. The second time, tooks around 9020. The third time, for exact same 500 cubes, tooks 17560. I can delete all cubes and run script again. Them, the time took is *reseted*, again taking around 2700 milliseconds. This strongly suggests that for each new cube creation, the performance is heavilly affected by the objects that already exists in the scene. So here, I think that is a good place to Blender programmers works to gain some efficiency. For me makes no sense the currently existing objects affets new ones creation. But I also would like to know what happens behind the scenes to justify why this happens.
+The `blender_scripts/randomsphere.py` script also calculates the time taken to generate all 500 cubes. It takes very different times each iteration. The first time I run the script, it usually takes around 2700 milliseconds. The second time, takes around 9020. The third time, for exact same 500 cubes, takes 17560. I can delete all cubes and run script again. Them, the time took is *reseted*, again taking around 2700 milliseconds. This strongly suggests that for each new cube creation, the performance is heavilly affected by the objects that already exists in the scene. So here, I think that is a good place to Blender programmers works to gain some efficiency. For me makes no sense the currently existing objects affets new ones creation. But I also would like to know what happens behind the scenes to justify why this happens.
 
-I also runned a test to create at once 1500 cubes. Then it tooks 33149 milliseconds! Cleared the scene, runned once more, takes 32935 milliseconds. It is little more than the sum of the time took for each 500 spehre generated at once! Quite strange! But also interesting to know what happens.
+I also runned a test to create at once 1500 cubes. Then it takes 33149 milliseconds! Cleared the scene, runned once more, takes 32935 milliseconds. It is little more than the sum of the time takes for each 500 spehre generated at once! Quite strange! But also interesting to know what happens.
 
 Another thing to note is that, althought in the time when the Blender are creating the spheres it is supposedly to do so in the fastest possible way. Why the processor may hold yourself from doing a task that is heavyweight? In fact, during the script execution, the Blender are completly freezed, showing that it is completly busy and nothing can be done further in current Blender. Also, the fan is throtled, and processor temperature is rised (just a little). Everything shows that some heavy work is beign performend by the processor. But during the script execution, I opened the Windows Task Manager to see the processor usage graphs. And it sticks with just 18%! So still there are other 82% of processor capacity idled. The theory is that this is due to the internal Blender algorithms be unable to use all processors cores at once. That are a big sort of operations that can use just a single core at once. This problem isn't new. The exact same situation existed when I used the 3ds max, more than 10 years ago. The only 3d operation that assuredly could use the processor at it's full power is the rendering, but rendering was not the only heavy weight operations that exists in 3d work. Since from the computers starts to ship with more than one single processing unit, more than 15 years ago, when the clock speed wasn't possible to be rised, softwares still remained working with just one core.
 
@@ -39,7 +40,7 @@ Once I am in another computer. Now shipped with Intel i7-1165G7. Times took for 
 
 ## Beign more inteligent on generating the "sphere of cubes"
 
-There's another script `randomsphere_onepass.py` just created. Here I try to make things more efficient. Instead of creating a box in it's default position and them moves to the calcalated vector position, why not create the cube already in the correct calculated position? So a *pass* of moving object may not be necessary and some processing time may be saved. The results in computer from same i7-1165G7:
+There's another script `blender_scripts/randomsphere_onepass.py` just created. Here I try to make things more efficient. Instead of creating a box in it's default position and them moves to the calcalated vector position, why not create the cube already in the correct calculated position? So a *pass* of moving object may not be necessary and some processing time may be saved. The results in computer from same i7-1165G7:
 
 * First 500 cubes: 2.618 ms
 * Next 500: 10.246 ms
@@ -94,3 +95,15 @@ Thitd test in Windows
 * the final 500 ones: 16.118 milliseconds
 
 Linux shows some better stabillity and speed over tests. The difference are about 20% better for the first 500 cubes, but things becomes more dramatic as the amount of objects grows, reaching almost 50% of performance improvement when that are much objects in the scene.
+
+## Obj Generator
+
+Today, a 10.000 cubes is not a heavyweight stuff to deal, but creating it on Blender, strangely, is. An 3d object with those 10.000 cubes also a breeze to deal with import and exporting operations.
+
+The .obj file format is an old known feature, but recently I discovered that its content is completely open. You can open an .obj file in a text editor and see meaningful information. So will be a lightweight operation programmatically creating an .obj file with 10.000 cubes through some mean outside Blender?
+
+Here comes the the `obj_cube_generator/CubeCodeGenerator.py` script. Its intent is to create a content of a file chunk representing a cube of an .obj file.
+
+That are some stuffs in `obj_cube_generator/examples` demonstrating the `CubeCodeGenerator.py` usage, looking for the 10.000 cubes generation. You can check how those files works in the [folder README.md](obj_cube_generator/examples/README.md)
+
+
