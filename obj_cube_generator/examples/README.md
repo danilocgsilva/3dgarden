@@ -1,6 +1,8 @@
 # Examples for `CubesCodeGenerator.py`
 
-Follows the explanation for files in this section.
+A set of examples on how to use the `CubesCodeGenerator.py` object.
+
+Follows explanation about files in this folder:
 
 ### **`basic_cube.py`**
 
