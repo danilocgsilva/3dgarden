@@ -1,20 +1,23 @@
 import * as THREE from 'three'
-import { Scene } from 'three';
 
 class SceneBuilder
 {
-    constructor() {
+    constructor(sizes, canvas) {
+        this.sizes = sizes
         this.scene  = new THREE.Scene()
         this.setLight()
+        this.camera = this.setCamera()
+        this.renderer = this.setRenderer(canvas)
     }
 
-    setTorus() {
-        const geometry = new THREE.TorusGeometry( .7, .2, 16, 100 );
-        const material = new THREE.MeshPhongMaterial()
-        material.color = new THREE.Color(0xff0000)
-        this.torus = new THREE.Mesh(geometry,material)
-        this.scene.add(this.torus)
-        return this.torus
+    setGeoCreator(geoCreator) {
+        this.geoCreator = geoCreator
+        this.geoCreator.setScene(this.scene)
+        return this
+    }
+
+    createGeo() {
+        this.geoCreator.create()
     }
 
     setLight() {
@@ -25,12 +28,20 @@ class SceneBuilder
         this.scene.add(pointLight)
     }
 
-    setCamera(sizes) {
-        this.camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
-        this.camera.position.x = 0
-        this.camera.position.y = 0
-        this.camera.position.z = 2
-        this.scene.add(this.camera)
+    setCamera() {
+        const camera = new THREE.PerspectiveCamera(75, this.sizes.width / this.sizes.height, 0.1, 100)
+        camera.position.x = 0
+        camera.position.y = 0
+        camera.position.z = 2
+        this.scene.add(camera)
+        return camera
+    }
+
+    setRenderer(canvas) {
+        const renderer = new THREE.WebGLRenderer({canvas})
+        renderer.setSize(this.sizes.width, this.sizes.height)
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+        return renderer
     }
 
     exposeCamera() {
@@ -41,12 +52,16 @@ class SceneBuilder
         return this.scene
     }
 
-    exposeSphere() {
-        return this.torus
+    exposeRenderer() {
+        return this.renderer
     }
 
-    exposeTorus() {
-        return this.torusObj
+    exposeGeometry() {
+        return this.geoCreator.exposeGeometry()
+    }
+
+    exposeMesh() {
+        return this.geoCreator.exposeMesh()
     }
 }
 
