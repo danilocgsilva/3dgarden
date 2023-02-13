@@ -13,7 +13,7 @@ module.exports = merge(
     commonConfiguration,
     {
         mode: 'development',
-        entry: path.resolve(__dirname, '../src/script10000.js'),
+        entry: path.resolve(__dirname, '../src/script2000.js'),
         devServer:
         {
             host: '0.0.0.0',

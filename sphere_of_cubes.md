@@ -111,3 +111,7 @@ Executing the `obj_cube_generator/examples/generateDataSpherePosition.py` and re
 ## 10.000 cubes in javascript
 
 How does the works like when working in a format more suitable for publishing, like showing the 10.000 cubes in browser?
+
+Creating a sphere if 10.000 cubes, in fact, is not something advanced to do in 3d. So, a suite like Blender is not necessary at all. You can check the project in `threejs/environment` folder.
+
+

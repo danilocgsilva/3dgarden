@@ -2,6 +2,7 @@ const { merge } = require('webpack-merge')
 const commonConfiguration = require('./webpack.common.js')
 const ip = require('internal-ip')
 const portFinderSync = require('portfinder-sync')
+const path = require('path')
 
 const infoColor = (_message) =>
 {
@@ -12,6 +13,7 @@ module.exports = merge(
     commonConfiguration,
     {
         mode: 'development',
+        entry: path.resolve(__dirname, '../src/script.js'),
         devServer:
         {
             host: '0.0.0.0',
