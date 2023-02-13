@@ -3,7 +3,8 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "webpack --config ./bundler/webpack.prod.js",
-    "dev": "webpack serve --config ./bundler/webpack.dev.js"
+    "dev-default": "webpack serve --config ./bundler/webpack.dev.js",
+    "dev-10000": "webpack serve --config ./bundler/webpack.dev10000.js"
   },
   "dependencies": {
     "@babel/core": "^7.13.1",

@@ -5,6 +5,7 @@ import CreateTorus from './building_environment/CreateTorus'
 import CreateCube from './building_environment/CreateCube'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import enableResize from './building_environment/enableResize'
+import getVector from './building_environment/getVector'
 
 const canvas = document.querySelector('canvas.webgl')
 const sizes = {
@@ -13,16 +14,14 @@ const sizes = {
 }
 const sceneBuilder = new SceneBuilder(sizes, canvas)
 
-
-for (let i = -2; i <= 2; i++) {
-    sceneBuilder.setGeoCreator(new CreateCube())
+for (let i = 0; i <= 10000; i++) {
+    sceneBuilder.setGeoCreator(new CreateCube(0.02, 0.02, 0.02))
     sceneBuilder.createGeo()
-    sceneBuilder.exposeMesh().translateX(i / 2)
-    sceneBuilder.exposeMesh().translateY(i / 2)
+    const vetctor = getVector()
+    sceneBuilder.exposeMesh().translateX(vetctor.x)
+    sceneBuilder.exposeMesh().translateY(vetctor.y)
+    sceneBuilder.exposeMesh().translateZ(vetctor.z)
 }
-
-sceneBuilder.setGeoCreator(new CreateTorus())
-sceneBuilder.createGeo()
 
 const renderer = sceneBuilder.exposeRenderer()
 const camera = sceneBuilder.exposeCamera()
