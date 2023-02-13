@@ -114,4 +114,58 @@ How does the works like when working in a format more suitable for publishing, l
 
 Creating a sphere if 10.000 cubes, in fact, is not something advanced to do in 3d. So, a suite like Blender is not necessary at all. You can check the project in `threejs/environment` folder.
 
+## How to position cubes forming a sphere at random position in the space?
 
+We got both scripts written in Python and in Javascript.
+
+In python, the snippet can be found in `blender_scripts/randomsphere_onepass.py` in the `getVector` function:
+
+```python
+# The import statement is required to make random() work and may be
+# positioned in the first script section
+from random import random
+
+def getVector():
+    x = random() * 2 - 1
+    y = random() * 2 - 1
+    z = random() * 2 - 1
+    
+    distance_from_center = math.sqrt(pow(x,2) + pow(y,2) + pow(z,2))
+    
+    vx = x * (1 / distance_from_center)
+    vy = y * (1 / distance_from_center)
+    vz = z * (1 / distance_from_center)
+
+    return (vx, vy, vz)
+```
+
+The javascript counterpart can be found in `threejs/environment/src/building_environment/getVector.js`:
+```javascript
+const getVector = () => {
+    const x = Math.random() * 2 - 1
+    const y = Math.random() * 2 - 1
+    const z = Math.random() * 2 - 1
+
+    const distance_from_center = Math.sqrt(x ** 2 + y ** 2 + z ** 2)
+
+    const vx = x * (1 / distance_from_center)
+    const vy = y * (1 / distance_from_center)
+    const vz = z * (1 / distance_from_center)
+
+    return {
+        x: vx,
+        y: vy,
+        z: vz
+    }
+}
+
+export default getVector
+```
+
+The idea of script is:
+
+* Pass one: calculates random number between -1 and 1 and assign to three different values a random result, each one representing a random *amount* of displacement from the origin in the 3d space.
+
+* Pass two: here we calculates the *distance of center* variable present in both script. It is just the function of *calculating the distance between two points in 3d space* beign aplied. Much more simple, because one of the points aways is the center of 3d space (position 0, 0, 0) makes us cut some of the function stuff.
+
+* Pass three, the normalization: the intent of those calculations is merely get a vector random direction. The resulting point already is in an random direction, but to considers it as a vector direction, it must have a distance equal to 1 from the center. So the next step is to *normalize* the three axis value so they have a distance equal to 1. The resulting equation is just a equivalente function to check the proportionality for all three axis so the distance matches 1. Just multiplies all three axis to this same proportion.
