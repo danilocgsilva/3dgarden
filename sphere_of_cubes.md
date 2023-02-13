@@ -108,3 +108,6 @@ That are some stuffs in `obj_cube_generator/examples` demonstrating the `CubeCod
 
 Executing the `obj_cube_generator/examples/generateDataSpherePosition.py` and redirects its content to a file tooks an eye blink of time. Using the generated file and redirecting its content to `obj_cube_generator/examples/inputcubespos.py` generate a .obj file containing cubes in all positions recorded in the file, which also tooks an eye blink. Them opening it in Blender tooks around 2 seconds in i7-12700H. So, some sort operations done in less than 30 seconds can creates 10.000 cubes in the Blender 3d space. Much better than the first 38 minutes if all done inside Blender.
 
+## 10.000 cubes in javascript
+
+How does the works like when working in a format more suitable for publishing, like showing the 10.000 cubes in browser?

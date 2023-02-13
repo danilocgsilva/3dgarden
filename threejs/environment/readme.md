@@ -1,18 +1,13 @@
-# Three.js Starter
+# Publishing 3d into web
 
-Courtesy of Bruno Simon of https://threejs-journey.xyz/
+This is an typical node project. If you already is used to such project, you know:
 
-## Setup
-Download [Node.js](https://nodejs.org/en/download/).
-Run this followed commands:
-
-``` bash
-# Install dependencies (only the first time)
-npm install
-
-# Run the local server at localhost:8080
-npm run dev
-
-# Build for production in the dist/ directory
-npm run build
 ```
+npm install
+npm run dev-10000
+```
+
+This set is based on Three.js starterkit from Bruno Simon of https://threejs-journey.xyz/
+
+Having the things running in web is a more suitable way to publish an show things to people.
+
