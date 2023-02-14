@@ -1,18 +1,19 @@
-# The sphere of cubes
+# The sphere of cubes (in Blender)
 
-* [Performance quirks (in Blender)](#Performance-quirks-in-Blender)
+* [Performance quirks](#Performance-quirks)
 * [The way of 10.000 cubes](#The-way-of-10.000-cubes)
 * [Landing in other garden...](#Landing-in-other-garden...)
 * [Beign more inteligent on generating the "sphere of cubes"](#Beign-more-inteligent-on-generating-the-"sphere-of-cubes")
 * [Chasing the idle processors](#Chasing-the-idle-processors)
 * [Linux performance](#Linux-performance)
 * [Obj Generator](#Obj-Generator)
+* [How to position cubes forming a sphere at random position in the space](#How-to-position-cubes-forming-a-sphere-at-random-position-in-the-space)
 
-I know that a got the success for defining a random direction vector when objects plotted randomly forms a sort of sphere. This is what I got in the `randomsphere.py`. There you can check the range, where prints 500 tiny cubes forming a sphere. The deal here is all cubes have exact same distance from the center, so we can take all three axis values over the space and considers its as a 3d vector representation.
+I know that a got the success for defining a random direction vector when objects plotted randomly forms a sort of sphere. This is what I got in the [randomsphere.py](#randomsphere.py). There you can check the range, where prints 500 tiny cubes forming a sphere. The deal here is all cubes have exact same distance from the center, so we can take all three axis values over the space and considers its as a 3d vector representation.
 
-## Performance quirks (in Blender)
+## Performance quirks
 
-The `blender_scripts/randomsphere.py` script also calculates the time taken to generate all 500 cubes. It takes very different times each iteration. The first time I run the script, it usually takes around 2700 milliseconds. The second time, takes around 9020. The third time, for exact same 500 cubes, takes 17560. I can delete all cubes and run script again. Them, the time took is *reseted*, again taking around 2700 milliseconds. This strongly suggests that for each new cube creation, the performance is heavilly affected by the objects that already exists in the scene. So here, I think that is a good place to Blender programmers works to gain some efficiency. For me makes no sense the currently existing objects affets new ones creation. But I also would like to know what happens behind the scenes to justify why this happens.
+The `randomsphere.py` script also calculates the time taken to generate all 500 cubes. It takes very different times each iteration. The first time I run the script, it usually takes around 2700 milliseconds. The second time, takes around 9020. The third time, for exact same 500 cubes, takes 17560. I can delete all cubes and run script again. Them, the time took is *reseted*, again taking around 2700 milliseconds. This strongly suggests that for each new cube creation, the performance is heavilly affected by the objects that already exists in the scene. So here, I think that is a good place to Blender programmers works to gain some efficiency. For me makes no sense the currently existing objects affets new ones creation. But I also would like to know what happens behind the scenes to justify why this happens.
 
 I also runned a test to create at once 1500 cubes. Then it takes 33149 milliseconds! Cleared the scene, runned once more, takes 32935 milliseconds. It is little more than the sum of the time takes for each 500 spehre generated at once! Quite strange! But also interesting to know what happens.
 
@@ -108,64 +109,4 @@ That are some stuffs in `obj_cube_generator/examples` demonstrating the `CubeCod
 
 Executing the `obj_cube_generator/examples/generateDataSpherePosition.py` and redirects its content to a file tooks an eye blink of time. Using the generated file and redirecting its content to `obj_cube_generator/examples/inputcubespos.py` generate a .obj file containing cubes in all positions recorded in the file, which also tooks an eye blink. Them opening it in Blender tooks around 2 seconds in i7-12700H. So, some sort operations done in less than 30 seconds can creates 10.000 cubes in the Blender 3d space. Much better than the first 38 minutes if all done inside Blender.
 
-## 10.000 cubes in javascript
 
-How does the works like when working in a format more suitable for publishing, like showing the 10.000 cubes in browser?
-
-Creating a sphere if 10.000 cubes, in fact, is not something advanced to do in 3d. So, a suite like Blender is not necessary at all. You can check the project in `threejs/environment` folder.
-
-## How to position cubes forming a sphere at random position in the space?
-
-We got both scripts written in Python and in Javascript.
-
-In python, the snippet can be found in `blender_scripts/randomsphere_onepass.py` in the `getVector` function:
-
-```python
-# The import statement is required to make random() work and may be
-# positioned in the first script section
-from random import random
-
-def getVector():
-    x = random() * 2 - 1
-    y = random() * 2 - 1
-    z = random() * 2 - 1
-    
-    distance_from_center = math.sqrt(pow(x,2) + pow(y,2) + pow(z,2))
-    
-    vx = x * (1 / distance_from_center)
-    vy = y * (1 / distance_from_center)
-    vz = z * (1 / distance_from_center)
-
-    return (vx, vy, vz)
-```
-
-The javascript counterpart can be found in `threejs/environment/src/building_environment/getVector.js`:
-```javascript
-const getVector = () => {
-    const x = Math.random() * 2 - 1
-    const y = Math.random() * 2 - 1
-    const z = Math.random() * 2 - 1
-
-    const distance_from_center = Math.sqrt(x ** 2 + y ** 2 + z ** 2)
-
-    const vx = x * (1 / distance_from_center)
-    const vy = y * (1 / distance_from_center)
-    const vz = z * (1 / distance_from_center)
-
-    return {
-        x: vx,
-        y: vy,
-        z: vz
-    }
-}
-
-export default getVector
-```
-
-The idea of script is:
-
-* Pass one: calculates random number between -1 and 1 and assign to three different values a random result, each one representing a random *amount* of displacement from the origin in the 3d space.
-
-* Pass two: here we calculates the *distance of center* variable present in both script. It is just the function of *calculating the distance between two points in 3d space* beign aplied. Much more simple, because one of the points aways is the center of 3d space (position 0, 0, 0) makes us cut some of the function stuff.
-
-* Pass three, the normalization: the intent of those calculations is merely get a vector random direction. The resulting point already is in an random direction, but to considers it as a vector direction, it must have a distance equal to 1 from the center. So the next step is to *normalize* the three axis value so they have a distance equal to 1. The resulting equation is just a equivalente function to check the proportionality for all three axis so the distance matches 1. Just multiplies all three axis to this same proportion.

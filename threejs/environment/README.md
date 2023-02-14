@@ -30,3 +30,8 @@ After running the project, you can spect the resulting through 3d space:
 * click and drag: rotate the forming sphere
 * scroll well, or drag the middle mouse button: zoom in and zoom out
 * shift + click and drag: perform a *pan* move
+
+## Performance of spheres of cubes
+
+As you can check in the initial [README.md](../../README.md), aftern founding the functions required to set a vector direction, then comes the time to play with it, what is an oportunity to test the frameworks capabilities.
+
