@@ -1,2 +1,3 @@
 obj_cube_generator/created_objs/*
 obj_cube_generator/__pycache__
+threejs/environment/package-lock.json
