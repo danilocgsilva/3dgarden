@@ -1,0 +1,11 @@
+version: '3.5'
+
+services:
+  node:
+    build:
+      context: ./docker
+    volumes:
+      - ./environment:/app
+    container_name: threejs_environment
+    ports:
+      - 8080:8080

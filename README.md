@@ -18,6 +18,8 @@ Having experiments done in javascript is also interesting, because doing it in j
 
 Browser ships with technologies as WebGL to use graphic cards capabilities and offers 3d experiences. There's also some javascript libraries frameworks like [Three.js](https://threejs.org/) and [Babylon.js](https://www.babylonjs.com/) designed to make the 3d web publishing easier.
 
+Some 3d experiments was done in this project and you can check it in the `threejs` folder. Check its [README.md](threejs/README.md).
+
 ## Where is the center of universe?
 
 I am not confortable saying that everything is the center of the universe. I understand that, once everything comes from the same point, so everything can be considered the center of universe. The problem with that is that, if there were an expansion, so this expansion still have a center, a point in the space where..., bit hard to explain and define, but stuffs will be more clear after some 3d representation.
