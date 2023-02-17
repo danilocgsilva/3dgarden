@@ -12,6 +12,11 @@ def positeObject(obj):
     obj.location.x = x * (1 / distance_from_center)
     obj.location.y = y * (1 / distance_from_center)
     obj.location.z = z * (1 / distance_from_center)
+    
+        
+# for i in range(250):
+#     bpy.ops.mesh.primitive_cube_add(size=0.05, enter_editmode=False, align='WORLD', location=(0, 0, 0), scale=(1, 1, 1))
+#     bpy.context.object.name = "obj" + str(i)
 
 for obj in bpy.data.objects:
     if obj.type == 'MESH':
@@ -20,11 +25,7 @@ for obj in bpy.data.objects:
         bpy.context.scene.frame_set(250)
         positeObject(obj)
         obj.keyframe_insert("location")
-        
-        action = obj.animation_data.action
-        fcurves = [fc for fc in action.fcurves]
-        for fcurve in fcurves:
-            for kfp in fcurve.keyframe_points:
-                if kfp.co.x == time:
-                    print("scale.%s easing set to EASE_IN at frame %d" % ("xyz"[fcurve.array_index], time))
-                    kfp.easing = 'EASE_IN' #  auto 
+        object_fcurves = obj.animation_data.action.fcurves
+        for fcurve in object_fcurves:
+            for kf in fcurve.keyframe_points:
+                kf.interpolation = 'LINEAR'
