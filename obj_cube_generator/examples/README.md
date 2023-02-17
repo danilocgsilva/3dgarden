@@ -23,3 +23,7 @@ This is an example of the `generateDataSpherePosition.py` result to be used on t
 ### **`1676129751.722362.obj`**
 
 An example of `inputcubespos.py` usage, consuming `10000cubes.data` file. Just import it any 3d suite software that understands the .obj format.
+
+### **`generateCubesInPlace.py`**
+
+Generates several cubes and it in same place. Suitable to use some kind of script like the `big_bang.py`, skiping the step to create the object, so it can be a faster process to create a big bang like explosion.
