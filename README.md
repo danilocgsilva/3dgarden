@@ -96,3 +96,7 @@ You can check the sections below.
 * [Javascript experiments](threejs/environment/README.md)
 * [Facing Blender and Three.js performance](blender_x_threejs.md)
 
+## Shooting the fragments
+
+The 10.000 cubes experiments allowed the research for some introdutory knowledge to simulate particles from an expasion, going to any direction, taking variets of speeds (a graph of the big bang?). The function of random direction in 3d space are done. Now is time to animate stuffs.
+
