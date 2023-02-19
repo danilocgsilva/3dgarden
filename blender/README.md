@@ -1,6 +1,4 @@
 # Blender scrips
 
-* `randomsphere.py`: The first working script to create a *sphere of cubes*. It creates a *sphere* with tiny cubes, randomly positioned over space, and actually you can check the `range_length` variable in the script begining to play around. But be warned that the amount of spheres required to create at once makes the time required grows exponentially, so do not enlarge this number alot. More about this and other issues can be found in the [sphere of cubes](../sphere_of_cubes.md) page.
-* `randomsphere_onepass.py`: A lean version of the `randomsphere.py` script. Is little tinier, and also a little more performant, as its skips the step of moving the box to a random position. Instead, the scripts creates a cube already in a calculated position.
-* `tri_party.py`: One product of some trials to create the `randomsphere.py` using trigonometric operations. Failed to do so, but the results is beaultiful and interesting to go to further study. Play with values of generateOneCube method in tha last script lines, which are angles. Try other values to create other beaultiful results and witness the *form of the function*.
-* `big_bang.py`: Creates some cubes, and animate them to random directions with random speeds. Play with the `creation_amount` variable right in the begining to set the amount of cubes to be created.
+* [The sphere of cubes](sphere_of_cubes.md)
+

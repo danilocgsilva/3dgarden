@@ -37,8 +37,6 @@ We got both scripts written in Python and in Javascript.
 In python, the snippet can be found in `blender_scripts/randomsphere_onepass.py` in the `getVector` function:
 
 ```python
-# The import statement is required to make random() work and may be
-# positioned in the first script section
 from random import random
 
 def getVector():

@@ -8,8 +8,13 @@
 * [Linux performance](#Linux-performance)
 * [Obj Generator](#Obj-Generator)
 * [How to position cubes forming a sphere at random position in the space](#How-to-position-cubes-forming-a-sphere-at-random-position-in-the-space)
+* [List of scripts in current folder](#List-of-scripts-in-current-folder)
 
-I know that a got the success for defining a random direction vector when objects plotted randomly forms a sort of sphere. This is what I got in the [randomsphere.py](#randomsphere.py). There you can check the range, where prints 500 tiny cubes forming a sphere. The deal here is all cubes have exact same distance from the center, so we can take all three axis values over the space and considers its as a 3d vector representation.
+The *sphere of cubes* is the first thing created in the series of exercises to apply math to the 3d digital space. This is part of exercises originated from the *where is the center of universe* question.
+
+The idea is to create an explostion in a *big bang* style. Simple enough, objects going to random directions with random speeds.
+
+The first ever thing to do is an algorithm to calculate randomly a vector direction to which some arbitrary object may follow. Testing this algorithm many times will form an *sphere of those objects*, where each object is positioned randomly over this sphere surface. You can go to [How to position cubes forming a sphere at random position in the space](../../README.md#How-to-position-cubes-forming-a-sphere-at-random-position-in-the-space) section to check right now how this has been achieved, using both python and javascript.
 
 ## Performance quirks
 
@@ -109,4 +114,9 @@ That are some stuffs in `obj_cube_generator/examples` demonstrating the `CubeCod
 
 Executing the `obj_cube_generator/examples/generateDataSpherePosition.py` and redirects its content to a file tooks an eye blink of time. Using the generated file and redirecting its content to `obj_cube_generator/examples/inputcubespos.py` generate a .obj file containing cubes in all positions recorded in the file, which also tooks an eye blink. Them opening it in Blender tooks around 2 seconds in i7-12700H. So, some sort operations done in less than 30 seconds can creates 10.000 cubes in the Blender 3d space. Much better than the first 38 minutes if all done inside Blender.
 
+## List of scripts in current folder
 
+* `randomsphere.py`: The first working script to create a *sphere of cubes*. It creates a *sphere* with tiny cubes, randomly positioned over space, and actually you can check the `range_length` variable in the script begining to play around. But be warned that the amount of spheres required to create at once makes the time required grows exponentially, so do not enlarge this number alot.
+* `randomsphere_onepass.py`: A lean version of the `randomsphere.py` script. Is little tinier, and also a little more performant, as its skips the step of moving the box to a random position. Instead, the scripts creates a cube already in a calculated position.
+* `tri_party.py`: One product of some trials to create the `randomsphere.py` using trigonometric operations. Failed to do so, but the results is beaultiful and interesting to go to further study. Play with values of generateOneCube method in tha last script lines, which are angles. Try other values to create other beaultiful results and witness the *form of the function*.
+* `big_bang.py`: Creates some cubes, and animate them to random directions with random speeds. Play with the `creation_amount` variable right in the begining to set the amount of cubes to be created.
