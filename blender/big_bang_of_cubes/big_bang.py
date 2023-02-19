@@ -4,7 +4,7 @@ import math
 
 creation_amount = 1000
 
-def generateBigbangExplosion(creation_amount):
+def generateBigbangExplosion(creation_amount, iteration_update=False):
 
     def positeObject(obj, speed = 1.0):
         x = random() * 2 - 1
@@ -39,9 +39,10 @@ def generateBigbangExplosion(creation_amount):
         for fcurve in object_fcurves:
             for kf in fcurve.keyframe_points:
                 kf.interpolation = 'LINEAR'
-        #bpy.ops.wm.redraw_timer(type='DRAW_WIN_SWAP', iterations=1) 
+        if iteration_update:
+            bpy.ops.wm.redraw_timer(type='DRAW_WIN_SWAP', iterations=1) 
         mesh_objects_count -= 1
         print("Remaining: " + str(mesh_objects_count))
 
 # Uncomment of you desire to execute the code without importing
-# generateBigbangExplosion(creation_amount)
+# generateBigbangExplosion(creation_amount, True)
