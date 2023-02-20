@@ -8,21 +8,32 @@ def isBlenderFile(file_name: str) -> bool:
         return True
     return False
 
-def join_here(file):
+def join_from_file(file):
+    print('Joining file: ' + file)
     full_file_path = os.path.join(os.getcwd(), 'created', file)
     with bpy.data.libraries.load(full_file_path) as (data_from, data_to):
-        for object_to_append in data_from.objects:
-            append_object(full_file_path, object_to_append)
+        append_object(full_file_path, data_from.objects, file)
 
-def append_object(file_path, obj_name):
+def append_object(file_path, objects, file_name):
+
+    objects_to_append = []
+    for object in objects:
+        dict_data_file = {'name': object}
+        objects_to_append.append(dict_data_file)
+
+    print('The file ' + file_name + ' have ' + str(len(objects_to_append)) + ' objects to be appended.')
     bpy.ops.wm.append(
-        filepath=os.path.join(file_path, "Object", obj_name),
+        filepath=os.path.join(file_path, "Object", file_name),
         directory=os.path.join(file_path, "Object"),
-        filename=obj_name
+        files=objects_to_append
     )
 
+files_to_join = []
 for file in os.listdir('created'):
     if isBlenderFile(file):
-        join_here(file)
+        files_to_join.append(file)
 
-
+print('There are ' + str(len(files_to_join)) + ' to be joined.')
+print(files_to_join)
+for file_joining in files_to_join:
+    join_from_file(file)
