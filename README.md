@@ -98,3 +98,5 @@ You can check the sections below.
 
 The 10.000 cubes experiments allowed the research for some introdutory knowledge to simulate particles from an expasion, going to any direction, taking variets of speeds (a graph of the big bang?). The function of random direction in 3d space are done. Now is time to animate stuffs.
 
+More details about this task in [Big Bang of cubes](blender/big_bang_of_cubes/README.md)
+
