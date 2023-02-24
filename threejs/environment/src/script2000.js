@@ -17,10 +17,10 @@ const sceneBuilder = new SceneBuilder(sizes, canvas)
 for (let i = 0; i <= 2000; i++) {
     sceneBuilder.setGeoCreator(new CreateCube(0.02, 0.02, 0.02))
     sceneBuilder.createGeo()
-    const vetctor = getVector()
-    sceneBuilder.exposeMesh().translateX(vetctor.x)
-    sceneBuilder.exposeMesh().translateY(vetctor.y)
-    sceneBuilder.exposeMesh().translateZ(vetctor.z)
+    const vector = getVector()
+    sceneBuilder.exposeMesh().translateX(vector.x)
+    sceneBuilder.exposeMesh().translateY(vector.y)
+    sceneBuilder.exposeMesh().translateZ(vector.z)
 }
 
 const renderer = sceneBuilder.exposeRenderer()

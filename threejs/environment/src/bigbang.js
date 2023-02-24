@@ -1,10 +1,9 @@
 import './style.css'
-import * as THREE from 'three'
 import SceneBuilder from './building_environment/SceneBuilder'
-import CreateTorus from './building_environment/CreateTorus'
 import CreateCube from './building_environment/CreateCube'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import enableResize from './building_environment/enableResize'
+import getVector from './building_environment/getVector'
 
 const canvas = document.querySelector('canvas.webgl')
 const sizes = {
@@ -27,9 +26,10 @@ const scene = sceneBuilder.exposeScene()
 new OrbitControls(camera, renderer.domElement);
 
 const tick = () => {
-    // sceneBuilder.exposeMesh().translateX(0.001)
-    // sceneBuilder.exposeMesh().translateY(0.001)
-    // sceneBuilder.exposeMesh().translatez(0.001)
+
+    sceneBuilder.exposeMesh().translateX(0.0001)
+    sceneBuilder.exposeMesh().translateY(0.0001)
+    sceneBuilder.exposeMesh().translateZ(0.0001)
     
     renderer.render(scene, camera)
     window.requestAnimationFrame(tick)
