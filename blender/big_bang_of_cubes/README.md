@@ -14,6 +14,16 @@ Naively, after creating the script that throws objects in random direction with 
 
 ## The quadratic decay discover
 
+I not found the center of universe (until now). But checked something that I found interesting. The distribuition of matter seems to follows the *quadratic decay rule*. The quadratic decay is a porperty of the light and gravity intesity in relation to its distance if a body and the source of light or gravity. The intensity decay in a *quadratic rule* in relation to the distance. Double the distance, and the intensity decays 4 times. More about this: http://projetosfisicaexperimental.blogspot.com/2016/03/lei-do-inverso-do-quadrado-da-distancia.html.
+
+The link above states:
+
+>... the light's propagation area increases with the square of the distance between the reference point and the light source... The light's intensity decreases, so the amount of ray lights that come out from the source keeps the same and, moving away from the source, the iluminated area increases.
+
+It also is added that the illuminated area matches to the square of distance of the distance.
+
+In the case of our tiny Big Bang (!!!!), the same reason for quadratic decay is not the same. In the case of a light source, the light rays is beign constantly created through the time. In the current simulation, all matter are created and throwed in the same time. Moreover, the matter also is not travelling at a constant speed, but each particle are assuming a constant speed, but each assuming a random speed between zero and 1.
+
 ## The list of scripts in the folder
 
 Follows the scripts in the folder:
