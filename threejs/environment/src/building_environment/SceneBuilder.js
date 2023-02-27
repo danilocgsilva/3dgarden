@@ -44,10 +44,6 @@ class SceneBuilder
         return renderer
     }
 
-    setGeoVector(vector) {
-        
-    }
-
     exposeCamera() {
         return this.camera
     }
