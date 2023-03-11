@@ -3,3 +3,4 @@ obj_cube_generator/__pycache__
 threejs/environment/package-lock.json
 blender/big_bang_of_cubes/created/*
 blender/big_bang_of_cubes/__pycache__/*
+gravity_simulation/blender/local.animate_with_file.py
